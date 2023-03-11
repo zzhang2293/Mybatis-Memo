@@ -1,0 +1,25 @@
+<configuration debug="true">
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{20} %file:%line% %replace(%msg){'\d{14,16,13,10}', ';'} %n</pattern>
+        </encoder>
+    </appender>
+    <appender name="R" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--See also http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
+        <File>log/log.txt</File>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{20} %file:%line% %replace(%msg){'\d{14,16,13,10}', ';'} %n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <maxIndex>10</maxIndex>
+            <FileNamePattern>log/Compendium.log.%i</FileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10000KB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="R"/>
+    </root>
+</configuration>

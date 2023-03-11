@@ -1,0 +1,17 @@
+1. 定义与sql映射文件同名的mapper接口，将mapper接口和sql映射文件放到同一目录下
+在resources中，用 com/mapper 而不是 com.mapper
+2. 设置sql映射文件的namespace属性为Mapper接口全限定名称
+3. 在mapper接口中定义方法，方法名是sql映射文件中sql语句的id，并保持参数和返回类型一直
+
+sql设置多条件查询
+1. 散装参数 需要@param
+2.实体类封装参数 brand
+3.map 集合
+
+动态sql
+<where>
+<if test != null> ...</if>
+</where>
+
+返回添加数据的主键
+<insert useGeneratedKeys = "true" keyProperty = "id">
