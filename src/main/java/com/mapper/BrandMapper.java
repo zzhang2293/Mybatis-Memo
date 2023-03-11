@@ -1,6 +1,7 @@
 package com.mapper;
 
 import com.pojo.Brand;
+import com.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public interface BrandMapper {
     int update (Brand brand);
     int deleteById(int id);
     int deleteByIds(int[] id);
+    int updateByUser(Map<String, Brand> userMap);
 
 
 }

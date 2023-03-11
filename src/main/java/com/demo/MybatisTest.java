@@ -1,6 +1,7 @@
 package com.demo;
 import com.mapper.BrandMapper;
 import com.pojo.Brand;
+import com.pojo.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -8,7 +9,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MybatisTest {
     @Test
@@ -143,6 +146,23 @@ public class MybatisTest {
         BrandMapper mapper = session.getMapper(BrandMapper.class);
         int[] ids = {3, 8};
         int res = mapper.deleteByIds(ids);
+        System.out.println(res);
+        session.close();
+    }
+    @Test
+    public void testUpdateUsingMap() throws Exception{
+        String source = "mybatis-config.xml";
+        InputStream stream = Resources.getResourceAsStream(source);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(stream);
+        SqlSession session = sqlSessionFactory.openSession(true);
+        BrandMapper mapper = session.getMapper(BrandMapper.class);
+        Map<String, Brand> map = new HashMap<>();
+        Brand brand = new Brand();
+        brand.setId(1);
+        brand.setDescription("this is brand description");
+        map.put("brand", brand);
+
+        int res = mapper.updateByUser(map);
         System.out.println(res);
         session.close();
     }

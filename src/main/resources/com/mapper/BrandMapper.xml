@@ -107,7 +107,28 @@
         </set>
         where id = #{id};
     </update>
-<!--////////////////////////////////////////////////////////////////////////////////////////-->
+    <update id="updateByUser">
+        update tb_brand
+        <set>
+            <if test="brand.brandName != null and brand.brandName !=''">
+                brand_name = #{brand.brandName},
+            </if>
+            <if test="brand.companyName != null and brand.brandName != ''">
+                company_name = #{brand.companyName},
+            </if>
+            <if test="brand.ordered != null">
+                ordered = #{brand.ordered},
+            </if>
+            <if test="brand.description != null and brand.description != ''">
+                description = #{brand.description},
+            </if>
+            <if test="brand.status != null">
+                status = #{brand.status}
+            </if>
+        </set>
+        where id = #{brand.id}
+    </update>
+    <!--////////////////////////////////////////////////////////////////////////////////////////-->
 <!--delete-->
 <delete id="deleteById">
     delete from tb_brand where id = #{id}
